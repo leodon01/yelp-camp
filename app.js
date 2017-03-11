@@ -6,7 +6,8 @@ var express     = require("express"),
     LocalStrategy = require("passport-local"),
     Campground  = require("./models/campground"),
     User        = require("./models/user"),
-    seedDB      = require("./seeds")
+    seedDB      = require("./seeds");
+
 
 
 mongoose.connect("mongodb://localhost/yelp_camp");
@@ -17,7 +18,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
   next();
-})
+});
 
 //PASSPORT CONFIG
 
