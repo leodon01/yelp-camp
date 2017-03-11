@@ -4,15 +4,19 @@ var express     = require("express"),
     mongoose    = require("mongoose"),
     passport    = require("passport"),
     LocalStrategy = require("passport-local"),
+    methodOverride = require("method-override"),
     Campground  = require("./models/campground"),
     User        = require("./models/user"),
-    seedDB      = require("./seeds");
+    seedDB      = require("./seeds"),
+    Comment     = require("./models/comments")
 
 
 
 mongoose.connect("mongodb://localhost/yelp_camp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
+
+//seedDb(); //seed the data base
 
 //Passes currentUser variable through every route
 app.use(function(req, res, next){
@@ -37,6 +41,8 @@ app.use(function(req, res, next){
    res.locals.currentUser = req.user;
    next();
 });
+
+app.use(methodOverride("_method"));
 
 
 
@@ -105,12 +111,45 @@ app.get("/campgrounds/:id", function(req, res) {
     if(err){
       console.log(err);
     } else {
-      console.log(foundCampground);
-      res.render("campgrounds/show.ejs", {campground: foundCampground
-      });
+      res.render("campgrounds/show.ejs", {campground: foundCampground});
     }
   });
 });
+
+//EDIT CAMPGROUND ROUTE
+app.get("/campgrounds/:id/edit", function(req, res){
+  Campground.findById(req.params.id, function(err, foundCampground){
+    if(err) {
+      res.render("/campgrounds");
+    } else {
+      res.render("campgrounds/edit.ejs", {campground: foundCampground});
+    }
+  })
+});
+//UPDATE CAMPGROUND ROUTE
+
+app.put("/campgrounds/:id", function(req, res) {
+  //find and update chosen campgrounds
+  Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
+    if(err){
+      res.redirect("/campgrounds");
+    } else {
+      //redirect to campground show page
+      res.redirect("/campgrounds/" + req.params.id);
+    }
+  });
+});
+
+//Destroy Campground ROUTE
+app.delete("/campgrounds/:id", function(req, res){
+  Campground.findByIdAndRemove(req.params.id, function(err){
+  if(err) {
+  res.redirect("/campgrounds");
+  } else {
+    res.redirect("/campgrounds");
+  }
+});
+})
 
 //===========================
 //COMMENTS ROUTES
@@ -136,8 +175,14 @@ app.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
         if(err){
           console.log(err);
         } else {
+          //add username and id to comment
+          comment.author.id = req.user._id;
+          comment.author.username = req.user.username;
+          //save comment
+          comment.save();
           campground.comments.push(comment);
           campground.save();
+          console.log(comment);
           res.redirect("/campgrounds/" + campground._id);
         }
       })

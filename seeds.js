@@ -22,34 +22,34 @@ var data = [
 function seedDB() {
   //REMOVE ALL CAMPGROUNDS
   Campground.remove({}, function(err){
-    if(err){
-      console.log(err);
-    } else {
-      console.log("removed campgrounds");
-      //ADD A FEW campgrounds
-      data.forEach(function(seed){
-        Campground.create(seed, function(err, campground){
-          if(err){
-            console.log(err);
-          } else {
-            console.log("added a campground");
-            //Creat comment
-            Comment.create({
-              text: "This place is dope....but no party :( ",
-              author: "Dissapointed Raver"
-            }, function(err, comment){
-              if(err){
-                console.log(err);
-              } else {
-                campground.comments.push(comment);
-                campground.save();
-                console.log("created new comment");
-              }
-            });
-          }
-        });
-      });
-    }
+    // if(err){
+    //   console.log(err);
+    // } else {
+    //   console.log("removed campgrounds");
+    //   //ADD A FEW campgrounds
+    //   data.forEach(function(seed){
+    //     Campground.create(seed, function(err, campground){
+    //       if(err){
+    //         console.log(err);
+    //       } else {
+    //         console.log("added a campground");
+    //         //Creat comment
+    //         Comment.create({
+    //           text: "This place is dope....but no party :( ",
+    //           author: "Dissapointed Raver"
+    //         }, function(err, comment){
+    //           if(err){
+    //             console.log(err);
+    //           } else {
+    //             campground.comments.push(comment);
+    //             campground.save();
+    //             console.log("created new comment");
+    //           }
+    //         });
+    //       }
+    //     });
+    //   });
+
   });
 
 
