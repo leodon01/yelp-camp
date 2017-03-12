@@ -2,13 +2,14 @@ var express     = require("express"),
     app         = express(),
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose"),
+    flash       = require("connect-flash"),
     passport    = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
     Campground  = require("./models/campground"),
     User        = require("./models/user"),
     seedDB      = require("./seeds"),
-    Comment     = require("./models/comments")
+    Comment     = require("./models/comment")
 
 
 
@@ -16,7 +17,7 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 
-//seedDb(); //seed the data base
+// seedDb(); //seed the data base
 
 //Passes currentUser variable through every route
 app.use(function(req, res, next){
@@ -43,6 +44,9 @@ app.use(function(req, res, next){
 });
 
 app.use(methodOverride("_method"));
+app.use(flash());
+
+
 
 
 
@@ -88,7 +92,7 @@ app.post("/campgrounds", function(req, res) {
   var image = req.body.image;
   var description = req.body.description;
   var newCampground = {name: name, image: image, description: description}
-
+  //create new campground and save to DB
   Campground.create(newCampground, function(err, newlyCreated) {
     if(err) {
       console.log(err);
