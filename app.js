@@ -13,7 +13,10 @@ var express     = require("express"),
 
 
 
-mongoose.connect("mongodb://localhost/yelp_camp");
+// mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect("mongodb://wellander8:2684517wellander@ds145178.mlab.com:45178/wecamp");
+
+mongodb://wellander8:2684517wellander@ds145178.mlab.com:45178/wecamp
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 
