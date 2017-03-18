@@ -11,6 +11,7 @@ var express     = require("express"),
     seedDB      = require("./seeds"),
     Comment     = require("./models/comment")
 
+app.set('port', (process.env.PORT || 5000));
 
 
 // mongoose.connect("mongodb://localhost/yelp_camp");
@@ -248,6 +249,6 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
-app.listen(3002, function() {
-  console.log("server launched on port 3002");
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
