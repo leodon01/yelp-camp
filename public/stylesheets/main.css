@@ -3,6 +3,7 @@
 }
 
 .thumbnail img {
+  height: 100%;
   width: 100%;
 }
 
@@ -12,4 +13,8 @@
 
 .thumbnail .caption-full {
   padding: 10px;
+}
+
+.hidden {
+  display: none;
 }

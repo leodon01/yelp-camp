@@ -94,8 +94,10 @@ app.get("/campgrounds", function(req, res) {
 app.post("/campgrounds", function(req, res) {
   var name = req.body.name;
   var image = req.body.image;
+  var image2 = req.body.image2;
+  var image3 = req.body.image3;
   var description = req.body.description;
-  var newCampground = {name: name, image: image, description: description}
+  var newCampground = {name: name, image: image, description: description, image2: image2, image3: image3}
   //create new campground and save to DB
   Campground.create(newCampground, function(err, newlyCreated) {
     if(err) {
