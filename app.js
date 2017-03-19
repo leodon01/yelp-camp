@@ -9,7 +9,8 @@ var express     = require("express"),
     Campground  = require("./models/campground"),
     User        = require("./models/user"),
     seedDB      = require("./seeds"),
-    Comment     = require("./models/comment")
+    Comment     = require("./models/comment");
+
 
 app.set('port', (process.env.PORT || 5000));
 

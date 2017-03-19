@@ -1,23 +1,33 @@
 <% include ../partials/header %>
+<% campName = function(name){ %>
+<%  var separateWords = name.split(" "); %>
+<%  var sWords =[]; %>
+<%  separateWords.forEach(function(word) { %>
+<%  sWords.push(word + "%20") %>
+<%  }); %>
+<%  sWords = sWords.join(""); %>
+<%  return sWords; %>
+<% } %>
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <p class="lead">YelpCamp</p>
-      <div class="list-group">
-        <li class="list-group-item active">info 3</li>
-        <li class="list-group-item">info 4</li>
-        <li class="list-group-item">info 7</li>
+      <p class="lead">WeCamp</p>
+      <div class="list-group testA">
+        <li id="generalTab" class="list-group-item active">General</li>
+        <li id="mapTab" class="list-group-item">Map</li>
+        <li id="reviewsTab" class="list-group-item">Reviews</li>
       </div>
     </div>
     <div class="col-md-9">
       <div class="thumbnail">
 
+        <iframe id="googleMap" class="hidden" width="825" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=<%=campName(campground.name)%>&amp;key=AIzaSyDX6vwUx1IP9_n2pd0NZLYYhNhRHiCYPRA" allowfullscreen></iframe>
 
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div id="carousel" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
@@ -30,11 +40,11 @@
               <img class="d-block img-fluid" src="<%= campground.image3 %>" alt="Third slide">
             </div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>

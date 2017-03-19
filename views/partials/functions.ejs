@@ -1,0 +1,9 @@
+campName = function(name){
+  var separateWords = name.split(" ");
+  var sWords =[];
+  separateWords.forEach(function(word) {
+    sWords.push(word + "%20")
+  });
+  sWords = sWords.join("");
+  return sWords;
+}
