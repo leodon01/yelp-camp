@@ -8,14 +8,17 @@
 <%  sWords = sWords.join(""); %>
 <%  return sWords; %>
 <% } %>
+
+
+
 <div class="container">
   <div class="row">
     <div class="col-md-3">
       <p class="lead">WeCamp</p>
       <div class="list-group testA">
-        <li id="generalTab" class="list-group-item active">General</li>
-        <li id="mapTab" class="list-group-item">Map</li>
-        <li id="reviewsTab" class="list-group-item">Reviews</li>
+        <li id="generalTab" class="cursor-change list-group-item active">General</li>
+        <li id="mapTab" class="cursor-change list-group-item">Map</li>
+        <li id="reviewsTab" class="cursor-change list-group-item">Reviews</li>
       </div>
     </div>
     <div class="col-md-9">
@@ -75,7 +78,7 @@
           <div class="row">
             <div class="clm-md-12">
               <strong><%= comment.author.username %></strong>
-              <span class="pull-right">12 days ago</span>
+              <span id="datePosted" class="pull-right">11 days ago</span>
               <p><%= comment.text %></p>
             </div>
           </div>

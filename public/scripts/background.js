@@ -18,8 +18,3 @@ function changeBG(){
 }
 
   setInterval(changeBG, 6000);
-var counter = 0;
-forEach(image in campground.image) {
-  counter++;
-}
-console.log(counter);

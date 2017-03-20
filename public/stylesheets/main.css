@@ -18,3 +18,16 @@
 .hidden {
   display: none;
 }
+
+.side-row {
+  height: 267px;
+  width: 342px;
+  display: flex;
+}
+.hiddenURL {
+}
+
+.cursor-change {
+  cursor: pointer;
+  cursor: hand;
+}

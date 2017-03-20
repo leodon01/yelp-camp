@@ -1,5 +1,6 @@
-
+var now = new Date();
 //reveal extra img url inputs in new.ejs
+//still need to add transition
 $("#plusURL").click(function(){
   $(".hiddenURL").toggleClass('hidden');
   $("#plusURL").toggleClass('fa-minus-square-o');
@@ -41,3 +42,22 @@ var mapProp= {
 };
 var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
+
+function getDate(string) {
+  var today = string;
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  if(dd<10){
+    dd='0'+dd
+  } else if(mm<10){
+    mm='0'+mm
+  };
+
+  today = dd + "/" + mm + "/" + yyyy;
+
+}
+document.getElementById("todayDate").value = now.toDateString();
+
+
+console.log(now.toDateString());

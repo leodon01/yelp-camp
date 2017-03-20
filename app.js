@@ -117,13 +117,14 @@ app.get("/campgrounds/new", function(req, res) {
 
 //SHOW ROUTE
 app.get("/campgrounds/:id", function(req, res) {
-  //find the campground with provided id
+  var date = req.body.date;
 
+  //find the campground with provided id
   Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
     if(err){
       console.log(err);
     } else {
-      res.render("campgrounds/show.ejs", {campground: foundCampground});
+      res.render("campgrounds/show.ejs", {campground: foundCampground, date: date});
     }
   });
 });
