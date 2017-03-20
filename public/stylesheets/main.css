@@ -31,3 +31,6 @@
   cursor: pointer;
   cursor: hand;
 }
+.caption {
+  margin: 8px;
+}
