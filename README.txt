@@ -1,3 +1,5 @@
+## Class project from Steven Grider's Node course
+
 --Express Router
 --Passport
 --Method Override
@@ -18,3 +20,4 @@ to-do-still-procrastination-is-real-will-get-to-it-eventually-list:
 -comment Destroy
 -comment auth
 -middleware refactoring
+
